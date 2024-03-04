@@ -45,12 +45,15 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Positioned(
                   top: -200,
-                  left: -27,
+                  left: -129,
                   child: Container(
                     height: 385,
-                    width: 450,
+                    width: 650,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(400),
+                        bottomRight: Radius.circular(400),
+                      ),
                       gradient: LinearGradient(
                         colors: [
                           Color.fromARGB(255, 39, 73, 77),
@@ -112,6 +115,25 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Positioned(
+                  top: 214,
+                  left: 294,
+                  child: Container(
+                    height: 38,
+                    width: 38,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      gradient: LinearGradient(
+                        colors: [
+                          Color(0xFF25A1AE),
+                          Color(0xFF25A1AE),
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
                   top: 210,
                   left: 290,
                   child: CircularPercentIndicator(
@@ -119,10 +141,10 @@ class _HomePageState extends State<HomePage> {
                     lineWidth: 4,
                     percent: 0.67,
                     progressColor: Colors.white,
-                    backgroundColor: Color(0xFF1A747D),
+                    backgroundColor: Colors.black,
                     circularStrokeCap: CircularStrokeCap.round,
                     center: Text(
-                      '10%',
+                      '67%',
                       style: TextStyle(fontSize: 10, color: Colors.white),
                     ),
                   ),
@@ -257,7 +279,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         Positioned(
-                          top: 45,
+                          top: 55,
                           left: 40,
                           child: Text(
                             "M      T      W      T      F      S",
@@ -271,7 +293,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Positioned(
                           top: 105,
-                          left: 40,
+                          left: 59,
                           child: Text(
                             "temperature",
                             style: TextStyle(
@@ -281,6 +303,11 @@ class _HomePageState extends State<HomePage> {
                               fontWeight: FontWeight.normal,
                             ),
                           ),
+                        ),
+                        Positioned(
+                          top: 100,
+                          left: 32,
+                          child: Image.asset('assets/images/Temp.png'),
                         ),
                       ],
                     ),
@@ -295,8 +322,8 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Color(0xFF252525),
         color: Color(0xFFD9D9D9),
-        iconPadding: 15,
-        height: 65,
+        iconPadding: 16,
+        height: 70,
         index: _currentIndex,
         onTap: (index) {
           _pageController.animateToPage(
@@ -309,16 +336,31 @@ class _HomePageState extends State<HomePage> {
           CurvedNavigationBarItem(
             child: Image.asset('assets/images/calendar.png'),
             label: 'Feed',
+            labelStyle: TextStyle(
+              fontFamily: 'Poppins',
+              color:
+                  Color(0xff25A1AE), // Ganti dengan warna biru yang diinginkan
+            ),
           ),
           CurvedNavigationBarItem(
             child: Image.asset(
               'assets/images/home.png',
             ),
             label: 'Home',
+            labelStyle: TextStyle(
+              fontFamily: 'Poppins',
+              color:
+                  Color(0xff25A1AE), // Ganti dengan warna biru yang diinginkan
+            ),
           ),
           CurvedNavigationBarItem(
             child: Image.asset('assets/images/statistics.png'),
             label: 'Statistic',
+            labelStyle: TextStyle(
+              fontFamily: 'Poppins',
+              color:
+                  Color(0xff25A1AE), // Ganti dengan warna biru yang diinginkan
+            ),
           ),
         ],
       ),
