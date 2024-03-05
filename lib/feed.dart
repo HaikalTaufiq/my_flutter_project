@@ -91,25 +91,26 @@ class _FeedState extends State<Feed> {
             ),
           ),
           Positioned(
-              top: 325,
-              left: 169,
-              child: Transform.scale(
-                scale: 3.0, // Mengatur faktor perbesaran
-                child: Switch(
-                  value: true, // Nilai switch (true/false)
-                  onChanged: (bool newValue) {
-                    // Fungsi yang dipanggil ketika nilai switch berubah
-                    // Anda dapat menambahkan logika yang sesuai di sini
-                  },
-                  activeColor: Colors.white, // Warna ketika switch aktif
-                  activeTrackColor:
-                      Color(0xFF25A1AE), // Warna track ketika switch aktif
-                  inactiveThumbColor:
-                      Colors.grey, // Warna thumb ketika switch tidak aktif
-                  inactiveTrackColor:
-                      Colors.grey[300], // Warna track ketika switch tidak aktif
-                ),
-              )),
+            top: 325,
+            left: 169,
+            child: Transform.scale(
+              scale: 3.0, // Mengatur faktor perbesaran
+              child: Switch(
+                value: true, // Nilai switch (true/false)
+                onChanged: (bool newValue) {
+                  // Fungsi yang dipanggil ketika nilai switch berubah
+                  // Anda dapat menambahkan logika yang sesuai di sini
+                },
+                activeColor: Colors.white, // Warna ketika switch aktif
+                activeTrackColor:
+                    Color(0xFF25A1AE), // Warna track ketika switch aktif
+                inactiveThumbColor:
+                    Colors.grey, // Warna thumb ketika switch tidak aktif
+                inactiveTrackColor:
+                    Colors.grey[300], // Warna track ketika switch tidak aktif
+              ),
+            ),
+          ),
         ]),
       ),
     );
