@@ -206,7 +206,7 @@ class _HomePageState extends State<HomePage> {
                   top: 322,
                   left: 125,
                   child: Text(
-                    "Monday",
+                    "Statistics",
                     style: TextStyle(
                       fontFamily: 'Poppins',
                       color: Colors.white,
@@ -230,86 +230,390 @@ class _HomePageState extends State<HomePage> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        isExpanded = !isExpanded;
+                        showModalBottomSheet(
+                          backgroundColor: Color(0xFF252525),
+                          useRootNavigator: true,
+                          context: context,
+                          clipBehavior: Clip.antiAlias,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(24),
+                            ),
+                          ),
+                          builder: (context) {
+                            return StatefulBuilder(
+                                builder: (context, setModalState) {
+                              return Container(
+                                padding: EdgeInsets.all(23),
+                                child: Stack(
+                                  children: [
+                                    Positioned(
+                                      top: 12,
+                                      left: 1,
+                                      child: Text(
+                                        "Feeding Statistics :",
+                                        style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 201,
+                                      left: 2,
+                                      child: Text(
+                                        "___________________________________",
+                                        style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w100,
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 180,
+                                      left: 10,
+                                      child: Text(
+                                        " Mon     Tue     Wed      Thu       Fri       Sat      Sun",
+                                        style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w200,
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 238,
+                                      left: 12,
+                                      child: Text(
+                                        "This Week",
+                                        style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 276,
+                                      left: 12,
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                              height: 100,
+                                              width: 150,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: Color(0xFF25A1AE),
+                                              ),
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 10, vertical: 10),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "Total Feed/day",
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontFamily: "poppins",
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 1,
+                                                  ),
+                                                  Text(
+                                                    "10 gram",
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontFamily: "poppins",
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                ],
+                                              )),
+                                        ],
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 276,
+                                      left: 185,
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                              height: 100,
+                                              width: 150,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: Color(0xFF25A1AE),
+                                              ),
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 10, vertical: 10),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "Total Output",
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontFamily: "poppins",
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 1,
+                                                  ),
+                                                  Text(
+                                                    "70 gram",
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontFamily: "poppins",
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                ],
+                                              )),
+                                        ],
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 318,
+                                      left: 280,
+                                      child: CircularPercentIndicator(
+                                        radius: 23,
+                                        lineWidth: 4,
+                                        percent: 0.70,
+                                        progressColor: Colors.white,
+                                        backgroundColor: Color(0xFF252525),
+                                        circularStrokeCap:
+                                            CircularStrokeCap.round,
+                                        center: Text(
+                                          '70%',
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              color: Colors.white),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 318,
+                                      left: 105,
+                                      child: CircularPercentIndicator(
+                                        radius: 23,
+                                        lineWidth: 4,
+                                        percent: 0.14,
+                                        progressColor: Colors.white,
+                                        backgroundColor: Color(0xFF252525),
+                                        circularStrokeCap:
+                                            CircularStrokeCap.round,
+                                        center: Text(
+                                          '14%',
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              color: Colors.white),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top:
+                                          102, // Sesuaikan dengan posisi vertikal yang diinginkan
+                                      left:
+                                          -35, // Sesuaikan dengan posisi horizontal yang diinginkan
+                                      child: Transform.rotate(
+                                        angle:
+                                            -1.5708, // Rotasi sebesar 90 derajat (ubah sesuai kebutuhan)
+                                        child: Container(
+                                          height:
+                                              18, // Sesuaikan dengan tinggi yang diinginkan
+                                          width:
+                                              125, // Sesuaikan dengan lebar yang diinginkan
+                                          child: LinearPercentIndicator(
+                                            lineHeight:
+                                                200, // Sesuaikan dengan tinggi yang diinginkan
+                                            percent: 0.6,
+                                            progressColor: Color(0xFF25A1AE),
+                                            backgroundColor: Colors.white,
+                                            barRadius: Radius.circular(
+                                                15), // Menambahkan radius pada ujung
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top:
+                                          102, // Sesuaikan dengan posisi vertikal yang diinginkan
+                                      left:
+                                          15, // Sesuaikan dengan posisi horizontal yang diinginkan
+                                      child: Transform.rotate(
+                                        angle:
+                                            -1.5708, // Rotasi sebesar 90 derajat (ubah sesuai kebutuhan)
+                                        child: Container(
+                                          height:
+                                              18, // Sesuaikan dengan tinggi yang diinginkan
+                                          width:
+                                              125, // Sesuaikan dengan lebar yang diinginkan
+                                          child: LinearPercentIndicator(
+                                            lineHeight:
+                                                200, // Sesuaikan dengan tinggi yang diinginkan
+                                            percent: 0.7,
+                                            progressColor: Color(0xFF25A1AE),
+                                            backgroundColor: Colors.white,
+                                            barRadius: Radius.circular(
+                                                15), // Menambahkan radius pada ujung
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top:
+                                          102, // Sesuaikan dengan posisi vertikal yang diinginkan
+                                      left:
+                                          65, // Sesuaikan dengan posisi horizontal yang diinginkan
+                                      child: Transform.rotate(
+                                        angle:
+                                            -1.5708, // Rotasi sebesar 90 derajat (ubah sesuai kebutuhan)
+                                        child: Container(
+                                          height:
+                                              18, // Sesuaikan dengan tinggi yang diinginkan
+                                          width:
+                                              125, // Sesuaikan dengan lebar yang diinginkan
+                                          child: LinearPercentIndicator(
+                                            lineHeight:
+                                                200, // Sesuaikan dengan tinggi yang diinginkan
+                                            percent: 0.8,
+                                            progressColor: Color(0xFF25A1AE),
+                                            backgroundColor: Colors.white,
+                                            barRadius: Radius.circular(
+                                                15), // Menambahkan radius pada ujung
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top:
+                                          102, // Sesuaikan dengan posisi vertikal yang diinginkan
+                                      left:
+                                          115, // Sesuaikan dengan posisi horizontal yang diinginkan
+                                      child: Transform.rotate(
+                                        angle:
+                                            -1.5708, // Rotasi sebesar 90 derajat (ubah sesuai kebutuhan)
+                                        child: Container(
+                                          height:
+                                              18, // Sesuaikan dengan tinggi yang diinginkan
+                                          width:
+                                              125, // Sesuaikan dengan lebar yang diinginkan
+                                          child: LinearPercentIndicator(
+                                            lineHeight:
+                                                200, // Sesuaikan dengan tinggi yang diinginkan
+                                            percent: 0.9,
+                                            progressColor: Color(0xFF25A1AE),
+                                            backgroundColor: Colors.white,
+                                            barRadius: Radius.circular(
+                                                15), // Menambahkan radius pada ujung
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top:
+                                          102, // Sesuaikan dengan posisi vertikal yang diinginkan
+                                      left:
+                                          165, // Sesuaikan dengan posisi horizontal yang diinginkan
+                                      child: Transform.rotate(
+                                        angle:
+                                            -1.5708, // Rotasi sebesar 90 derajat (ubah sesuai kebutuhan)
+                                        child: Container(
+                                          height:
+                                              18, // Sesuaikan dengan tinggi yang diinginkan
+                                          width:
+                                              125, // Sesuaikan dengan lebar yang diinginkan
+                                          child: LinearPercentIndicator(
+                                            lineHeight:
+                                                200, // Sesuaikan dengan tinggi yang diinginkan
+                                            percent: 1.0,
+                                            progressColor: Color(0xFF25A1AE),
+                                            backgroundColor: Colors.white,
+                                            barRadius: Radius.circular(
+                                                15), // Menambahkan radius pada ujung
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top:
+                                          102, // Sesuaikan dengan posisi vertikal yang diinginkan
+                                      left:
+                                          215, // Sesuaikan dengan posisi horizontal yang diinginkan
+                                      child: Transform.rotate(
+                                        angle:
+                                            -1.5708, // Rotasi sebesar 90 derajat (ubah sesuai kebutuhan)
+                                        child: Container(
+                                          height:
+                                              18, // Sesuaikan dengan tinggi yang diinginkan
+                                          width:
+                                              125, // Sesuaikan dengan lebar yang diinginkan
+                                          child: LinearPercentIndicator(
+                                            lineHeight:
+                                                200, // Sesuaikan dengan tinggi yang diinginkan
+                                            percent: 0.8,
+                                            progressColor: Color(0xFF25A1AE),
+                                            backgroundColor: Colors.white,
+                                            barRadius: Radius.circular(
+                                                15), // Menambahkan radius pada ujung
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top:
+                                          102, // Sesuaikan dengan posisi vertikal yang diinginkan
+                                      left:
+                                          265, // Sesuaikan dengan posisi horizontal yang diinginkan
+                                      child: Transform.rotate(
+                                        angle:
+                                            -1.5708, // Rotasi sebesar 90 derajat (ubah sesuai kebutuhan)
+                                        child: Container(
+                                          height:
+                                              18, // Sesuaikan dengan tinggi yang diinginkan
+                                          width:
+                                              125, // Sesuaikan dengan lebar yang diinginkan
+                                          child: LinearPercentIndicator(
+                                            lineHeight:
+                                                200, // Sesuaikan dengan tinggi yang diinginkan
+                                            percent: 0.6,
+                                            progressColor: Color(0xFF25A1AE),
+                                            backgroundColor: Colors.white,
+                                            barRadius: Radius.circular(
+                                                15), // Menambahkan radius pada ujung
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            });
+                          },
+                        );
                       });
                     },
                     child: Image.asset(
                       'assets/images/Panah.png',
                       width: 326,
                       height: 72,
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 374,
-                  left: 33,
-                  child: AnimatedContainer(
-                    duration: Duration(milliseconds: 400),
-                    height: isExpanded ? 200 : 0,
-                    width: 325,
-                    decoration: BoxDecoration(
-                      color: Color(
-                          0xFF020810), // Sesuaikan dengan warna yang diinginkan
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.5),
-                          spreadRadius: 0,
-                          blurRadius: 3,
-                          offset: Offset(4, 3),
-                        ),
-                      ],
-                    ),
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          top: 11,
-                          left: 33,
-                          child: Text(
-                            "Days",
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          top: 55,
-                          left: 40,
-                          child: Text(
-                            "M      T      W      T      F      S",
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
-                              color: Colors.white,
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          top: 105,
-                          left: 59,
-                          child: Text(
-                            "temperature",
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          top: 100,
-                          left: 32,
-                          child: Image.asset('assets/images/Temp.png'),
-                        ),
-                      ],
                     ),
                   ),
                 ),
@@ -354,7 +658,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           CurvedNavigationBarItem(
-            child: Image.asset('assets/images/statistics.png'),
+            child: Image.asset('assets/images/calendar.png'),
             label: 'Statistic',
             labelStyle: TextStyle(
               fontFamily: 'Poppins',
