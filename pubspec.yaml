@@ -43,6 +43,7 @@ dependencies:
   intl: ^0.19.0
   sqflite: ^2.3.2
   flutter_native_splash: ^2.3.13
+  numberpicker: ^2.1.2
 
 dev_dependencies:
   flutter_test:
@@ -50,11 +51,16 @@ dev_dependencies:
   flutter_lints: ^3.0.0
 
 flutter_native_splash:
-  color_dark: "#42a5f5"
-  background_image: assets/images/squarepants_logo.png
-  android: true
-  ios: true
-  web: true
+  color: "#252525"
+  image: assets/images/squarepants.png
+  color_dark: "#252525"
+  image_dark: assets/images/squarepants.png
+
+  android_12:
+    image: assets/images/squarepants.png
+    icon_background_color: "#252525"
+    image_dark: assets/images/squarepants.png
+    icon_background_color_dark: "#252525"
 
 flutter_launcher_icons:
   android: "launcher_icon"

@@ -11,12 +11,14 @@ class AlarmInfo {
     this.isPending,
   });
 
-  factory AlarmInfo.fromMap(Map<String, dynamic> json) => AlarmInfo(
-        id: json["id"],
-        title: json["title"],
-        alarmDateTime: DateTime.parse(json["alarmDateTime"]),
-        isPending: json["isPending"],
-      );
+  factory AlarmInfo.fromMap(Map<String, dynamic> map) {
+    return AlarmInfo(
+      id: map['id'],
+      title: map['title'],
+      alarmDateTime: DateTime.parse(map['alarmDateTime']),
+      isPending: map['isPending'] == 1 ? true : false,
+    );
+  }
   Map<String, dynamic> toMap() => {
         "id": id,
         "title": title,

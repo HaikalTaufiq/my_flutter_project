@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_application_1/service/timepicker.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_application_1/service/notif_service.dart';
 import 'package:flutter_application_1/alarm_helper.dart';
@@ -15,11 +18,14 @@ class History extends StatefulWidget {
 }
 
 class _HistoryState extends State<History> {
+  // ignore: unused_field
   DateTime? _alarmTime;
-  late String _alarmTimeString;
   AlarmHelper _alarmHelper = AlarmHelper();
   Future<List<AlarmInfo>>? _alarms;
   Timer? _timer;
+  String _selectedTimeFormat = "AM";
+  int _selectedMinute = 0;
+  int _selectedHour = 0;
 
   @override
   void initState() {
@@ -32,8 +38,8 @@ class _HistoryState extends State<History> {
   }
 
   void LoadAlarms() {
-    _alarms = _alarmHelper.getAlarms();
     if (mounted) {
+      _alarms = _alarmHelper.getAlarms();
       setState(() {});
     }
   }
@@ -62,7 +68,7 @@ class _HistoryState extends State<History> {
             fit: BoxFit.contain, // Adjust as needed
           ),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 32, vertical: 54),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 14),
         child: Column(
           children: <Widget>[
             Expanded(
@@ -75,9 +81,9 @@ class _HistoryState extends State<History> {
                           var alarmTime = DateFormat('hh:mm aa')
                               .format(alarm.alarmDateTime!);
                           return Container(
-                            margin: EdgeInsets.only(bottom: 32),
+                            margin: EdgeInsets.only(bottom: 10),
                             padding: EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 8),
+                                horizontal: 12, vertical: 1),
                             decoration: BoxDecoration(
                               color: Color(0xFF25A1AE),
                               borderRadius:
@@ -86,63 +92,160 @@ class _HistoryState extends State<History> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                SizedBox(
+                                  height: 8,
+                                ),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(
                                       children: [
-                                        Icon(
-                                          Icons.label,
-                                          color: Colors.white,
-                                          size: 24,
+                                        Transform.translate(
+                                          offset: Offset(-2, 0),
+                                          child: Icon(
+                                            Icons.label,
+                                            color: Colors.white,
+                                            size: 24,
+                                          ),
                                         ),
                                         SizedBox(
                                           width: 8,
                                         ),
                                         Text(
-                                          alarm.title!,
+                                          'Mon - Sun',
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontFamily: "poppins",
+                                            fontSize: 14,
                                           ),
                                         ),
                                       ],
                                     ),
-                                    Switch(
-                                      onChanged: (bool value) {},
-                                      value: true,
-                                      activeColor: Colors.white,
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Transform.scale(
+                                      scale: 0.7,
+                                      child: Switch(
+                                        onChanged: (bool value) {},
+                                        value: true,
+                                        activeColor: Colors.white,
+                                      ),
                                     ),
                                   ],
                                 ),
-                                Text(
-                                  'Mon-Fri',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: "poppins",
+                                GestureDetector(
+                                  onTap: () {
+                                    showModalBottomSheet(
+                                      backgroundColor: Color(0xFF252525),
+                                      useRootNavigator: true,
+                                      context: context,
+                                      clipBehavior: Clip.antiAlias,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.vertical(
+                                          top: Radius.circular(24),
+                                        ),
+                                      ),
+                                      builder: (context) {
+                                        return StatefulBuilder(
+                                          builder: (context, setModalState) {
+                                            return Container(
+                                              padding: EdgeInsets.all(0),
+                                              child: Column(
+                                                children: [
+                                                  SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  ListTile(
+                                                    title: Center(
+                                                      child: Text(
+                                                        'Edit Feed Schedule',
+                                                        style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontFamily:
+                                                                "poppins"),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  NumberPickerWidget(
+                                                    hour: _selectedHour,
+                                                    minute: _selectedMinute,
+                                                    timeFormat:
+                                                        _selectedTimeFormat,
+                                                    onHourChanged: (value) {
+                                                      setModalState(() {
+                                                        _selectedHour = value;
+                                                      });
+                                                    },
+                                                    onMinuteChanged: (value) {
+                                                      setModalState(() {
+                                                        _selectedMinute = value;
+                                                      });
+                                                    },
+                                                    onTimeFormatChanged:
+                                                        (value) {
+                                                      setModalState(() {
+                                                        _selectedTimeFormat =
+                                                            value;
+                                                      });
+                                                    },
+                                                  ),
+                                                  FloatingActionButton.extended(
+                                                    backgroundColor:
+                                                        Color(0xFF25A1AE),
+                                                    onPressed: () {
+                                                      // Panggil fungsi untuk mengupdate alarm di sini
+                                                      updateAlarm(alarm.id);
+                                                      // Tutup bottom sheet setelah update
+                                                    },
+                                                    label: Text(
+                                                      'Save',
+                                                      style: TextStyle(
+                                                        fontFamily: "poppins",
+                                                        color: Colors.white,
+                                                        fontSize: 18,
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
+                                    );
+                                  },
+                                  child: Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 28,
+                                      ),
+                                      Text(
+                                        alarmTime,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: 'poppins',
+                                          fontSize: 34,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 100,
+                                      ),
+                                      IconButton(
+                                          icon: Icon(Icons.delete),
+                                          color: Colors.white,
+                                          onPressed: () {
+                                            deleteAlarm(alarm.id);
+                                          }),
+                                    ],
                                   ),
                                 ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      alarmTime,
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontFamily: "poppins",
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.w700),
-                                    ),
-                                    IconButton(
-                                        icon: Icon(Icons.delete),
-                                        color: Colors.white,
-                                        onPressed: () {
-                                          deleteAlarm(alarm.id);
-                                        }),
-                                  ],
-                                ),
+                                SizedBox(height: 20),
                               ],
                             ),
                           );
@@ -152,8 +255,6 @@ class _HistoryState extends State<History> {
                                 horizontal: 32, vertical: 16),
                             child: MaterialButton(
                               onPressed: () {
-                                _alarmTimeString =
-                                    DateFormat('HH:mm').format(DateTime.now());
                                 showModalBottomSheet(
                                   backgroundColor: Color(0xFF252525),
                                   useRootNavigator: true,
@@ -168,83 +269,11 @@ class _HistoryState extends State<History> {
                                     return StatefulBuilder(
                                         builder: (context, setModalState) {
                                       return Container(
-                                        padding: EdgeInsets.all(32),
+                                        padding: EdgeInsets.all(0),
                                         child: Column(
                                           children: [
                                             SizedBox(
                                               height: 10,
-                                            ),
-                                            ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                padding: EdgeInsets.only(
-                                                    top: 20,
-                                                    bottom: 20,
-                                                    right: 40,
-                                                    left: 40),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          16), // Atur radius sesuai keinginan Anda
-                                                ),
-                                                backgroundColor: Color(
-                                                    0xFF25A1AE), // Warna latar belakang button
-                                              ),
-                                              onPressed: () async {
-                                                var selectedTime =
-                                                    await showTimePicker(
-                                                  context: context,
-                                                  initialTime: TimeOfDay.now(),
-                                                  builder:
-                                                      (BuildContext context,
-                                                          Widget? child) {
-                                                    return Theme(
-                                                      data: ThemeData.dark()
-                                                          .copyWith(
-                                                        primaryColor: Color(
-                                                                0xFF25A1AE)
-                                                            .withOpacity(0.8),
-                                                        hintColor:
-                                                            Color(0xFF25A1AE),
-                                                        textTheme: TextTheme(
-                                                          headlineSmall:
-                                                              TextStyle(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontFamily:
-                                                                      "poppins"),
-                                                        ),
-                                                      ),
-                                                      child: child!,
-                                                    );
-                                                  },
-                                                );
-                                                if (selectedTime != null) {
-                                                  final now = DateTime.now();
-                                                  var selectedDateTime =
-                                                      DateTime(
-                                                          now.year,
-                                                          now.month,
-                                                          now.day,
-                                                          selectedTime.hour,
-                                                          selectedTime.minute);
-                                                  _alarmTime = selectedDateTime;
-                                                  setModalState(
-                                                    () {
-                                                      _alarmTimeString =
-                                                          DateFormat('HH:mm')
-                                                              .format(
-                                                                  selectedDateTime);
-                                                    },
-                                                  );
-                                                }
-                                              },
-                                              child: Text(
-                                                _alarmTimeString,
-                                                style: TextStyle(
-                                                    fontSize: 42,
-                                                    fontFamily: "poppins",
-                                                    color: Colors.white),
-                                              ),
                                             ),
                                             ListTile(
                                               title: Center(
@@ -257,21 +286,38 @@ class _HistoryState extends State<History> {
                                               ),
                                             ),
                                             SizedBox(
-                                              height: 150,
+                                              height: 10,
+                                            ),
+                                            NumberPickerWidget(
+                                              hour: _selectedHour,
+                                              minute: _selectedMinute,
+                                              timeFormat: _selectedTimeFormat,
+                                              onHourChanged: (value) {
+                                                setModalState(() {
+                                                  _selectedHour = value;
+                                                });
+                                              },
+                                              onMinuteChanged: (value) {
+                                                setModalState(() {
+                                                  _selectedMinute = value;
+                                                });
+                                              },
+                                              onTimeFormatChanged: (value) {
+                                                setModalState(() {
+                                                  _selectedTimeFormat = value;
+                                                });
+                                              },
                                             ),
                                             FloatingActionButton.extended(
                                               backgroundColor:
                                                   Color(0xFF25A1AE),
                                               onPressed: onSaveAlarm,
-                                              icon: Icon(
-                                                Icons.alarm,
-                                                color: Colors.white,
-                                              ),
                                               label: Text(
                                                 'Save',
                                                 style: TextStyle(
                                                   fontFamily: "poppins",
                                                   color: Colors.white,
+                                                  fontSize: 18,
                                                 ),
                                               ),
                                             )
@@ -310,7 +356,7 @@ class _HistoryState extends State<History> {
                         child: Text(
                       'Loading ...',
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontFamily: "poppins",
                       ),
                     ));
@@ -323,26 +369,39 @@ class _HistoryState extends State<History> {
   }
 
   void onSaveAlarm() async {
-    DateTime scheduleAlarmDateTime;
-    if (_alarmTime!.isAfter(DateTime.now())) {
-      scheduleAlarmDateTime = _alarmTime!;
-    } else {
-      scheduleAlarmDateTime = _alarmTime!.add(Duration(days: 1));
-    }
-
-    var alarmInfo = AlarmInfo(
-      alarmDateTime: scheduleAlarmDateTime,
-      title: 'Alarm',
+    // Membuat DateTime dari nilai NumberPickerWidget yang dipilih
+    DateTime now = DateTime.now();
+    DateTime scheduleAlarmDateTime = DateTime(
+      now.year,
+      now.month,
+      now.day,
+      _selectedHour, // Menggunakan nilai _selectedHour dari NumberPickerWidget
+      _selectedMinute, // Menggunakan nilai _selectedMinute dari NumberPickerWidget
     );
 
+    // Memastikan waktu alarm diatur di masa depan
+    if (scheduleAlarmDateTime.isBefore(now)) {
+      scheduleAlarmDateTime = scheduleAlarmDateTime.add(Duration(days: 1));
+    }
+
+    // Membuat objek AlarmInfo
+    var alarmInfo = AlarmInfo(
+      alarmDateTime: scheduleAlarmDateTime,
+      title: 'alarm',
+    );
+
+    // Menyimpan alarm ke dalam database
     _alarmHelper.insertAlarm(alarmInfo);
 
-    // Start a periodic timer to check if it's time to show the notification
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    // Memulai timer periodik untuk memeriksa apakah sudah waktunya menampilkan notifikasi
+    _timer = Timer.periodic(Duration(seconds: 5), (timer) {
       checkAndShowNotification(alarmInfo);
     });
 
+    // Menutup modal bottom sheet
     Navigator.pop(context);
+
+    // Memuat ulang daftar alarm setelah menambahkan alarm baru
     LoadAlarms();
   }
 
@@ -361,6 +420,52 @@ class _HistoryState extends State<History> {
 
   void deleteAlarm(int? id) {
     _alarmHelper.delete(id);
+    LoadAlarms();
+  }
+
+  void updateAlarm(int? id) async {
+    // Membuat DateTime dari nilai NumberPickerWidget yang dipilih
+    DateTime now = DateTime.now();
+    DateTime scheduleAlarmDateTime = DateTime(
+      now.year,
+      now.month,
+      now.day,
+      _selectedHour, // Menggunakan nilai _selectedHour dari NumberPickerWidget
+      _selectedMinute, // Menggunakan nilai _selectedMinute dari NumberPickerWidget
+    );
+
+    if (id != null) {
+      // Membuat objek AlarmInfo baru dengan data yang diperbarui
+      var updatedAlarmInfo = AlarmInfo(
+        id: id,
+        alarmDateTime: scheduleAlarmDateTime,
+        title: 'alarm', // Anda dapat menyesuaikan judul sesuai kebutuhan
+      );
+
+      // Memanggil metode updateAlarm dari AlarmHelper untuk mengupdate data di database
+      await _alarmHelper.updateAlarm(updatedAlarmInfo);
+    } else {
+      // Jika id null, maka tidak ada alarm yang perlu diperbarui
+      // Tambahkan logika penanganan kesalahan di sini jika diperlukan
+    }
+
+    var alarmInfo = AlarmInfo(
+      alarmDateTime: scheduleAlarmDateTime,
+      title: 'alarm',
+    );
+
+    // Menyimpan alarm ke dalam database
+    _alarmHelper.updateAlarm(alarmInfo);
+
+    // Memulai timer periodik untuk memeriksa apakah sudah waktunya menampilkan notifikasi
+    _timer = Timer.periodic(Duration(seconds: 5), (timer) {
+      checkAndShowNotification(alarmInfo);
+    });
+
+    // Menutup modal bottom sheet
+    Navigator.pop(context);
+
+    // Memuat ulang daftar alarm setelah menambahkan alarm baru
     LoadAlarms();
   }
 }
