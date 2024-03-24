@@ -81,11 +81,11 @@ class _HistoryState extends State<History> {
                           var alarmTime = DateFormat('hh:mm aa')
                               .format(alarm.alarmDateTime!);
                           return Container(
-                            margin: EdgeInsets.only(bottom: 10),
+                            margin: EdgeInsets.only(bottom: 25),
                             padding: EdgeInsets.symmetric(
                                 horizontal: 12, vertical: 1),
                             decoration: BoxDecoration(
-                              color: Color(0xFF25A1AE),
+                              color: Color(0xFF25A1AE).withOpacity(0.5),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(24)),
                             ),
@@ -93,34 +93,34 @@ class _HistoryState extends State<History> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(
-                                  height: 8,
+                                  height: 7,
                                 ),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Row(
-                                      children: [
-                                        Transform.translate(
-                                          offset: Offset(-2, 0),
-                                          child: Icon(
-                                            Icons.label,
-                                            color: Colors.white,
-                                            size: 24,
+                                    Transform.translate(
+                                      offset: Offset(9, 0),
+                                      child: Row(
+                                        children: [
+                                          Transform.translate(
+                                            offset: Offset(-2, 0),
+                                            child: Icon(
+                                              Icons.label,
+                                              color: Colors.white,
+                                              size: 24,
+                                            ),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          width: 8,
-                                        ),
-                                        Text(
-                                          'Mon - Sun',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontFamily: "poppins",
-                                            fontSize: 14,
+                                          Text(
+                                            'Feed',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: "poppins",
+                                              fontSize: 14,
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                     SizedBox(
                                       height: 10,
@@ -167,9 +167,6 @@ class _HistoryState extends State<History> {
                                                                 "poppins"),
                                                       ),
                                                     ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 10,
                                                   ),
                                                   NumberPickerWidget(
                                                     hour: _selectedHour,
@@ -219,33 +216,40 @@ class _HistoryState extends State<History> {
                                       },
                                     );
                                   },
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 28,
-                                      ),
-                                      Text(
-                                        alarmTime,
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontFamily: 'poppins',
-                                          fontSize: 34,
-                                          fontWeight: FontWeight.w700,
+                                  child: Transform.translate(
+                                    offset: Offset(0, -10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 8),
+                                          child: Text(
+                                            alarmTime,
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: 'poppins',
+                                              fontSize: 34,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                      SizedBox(
-                                        width: 100,
-                                      ),
-                                      IconButton(
-                                          icon: Icon(Icons.delete),
-                                          color: Colors.white,
-                                          onPressed: () {
-                                            deleteAlarm(alarm.id);
-                                          }),
-                                    ],
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 5),
+                                          child: IconButton(
+                                              icon: Icon(Icons.delete),
+                                              color: Colors.white,
+                                              onPressed: () {
+                                                deleteAlarm(alarm.id);
+                                              }),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                                SizedBox(height: 20),
+                                SizedBox(height: 5),
                               ],
                             ),
                           );

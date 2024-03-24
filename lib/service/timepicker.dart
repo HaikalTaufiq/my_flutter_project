@@ -64,35 +64,11 @@ class NumberPickerWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            height: 80,
-            width: 250,
-            decoration: BoxDecoration(
-              color: Color(0xFF25A1AE),
-              borderRadius: BorderRadius.all(Radius.circular(24)),
-            ),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 33,
-                ),
-                Text(
-                  " ${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, "0")} $timeFormat",
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 38,
-                    color: Colors.white,
-                    fontFamily: "poppins",
-                  ),
-                ),
-              ],
-            ),
-          ),
           const SizedBox(
-            height: 10,
+            height: 5,
           ),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 85, vertical: 0),
             decoration: BoxDecoration(
               color: Color(0xFF252525),
               borderRadius: BorderRadius.circular(10),
@@ -148,72 +124,12 @@ class NumberPickerWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        onTimeFormatChanged("AM");
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 10),
-                        decoration: BoxDecoration(
-                            color: timeFormat == "AM"
-                                ? Color(0xFF25A1AE).withOpacity(0.6)
-                                : Color(0xFF25A1AE).withOpacity(0.3),
-                            border: Border.all(
-                              color: timeFormat == "AM"
-                                  ? Color(0xFF25A1AE)
-                                  : Color(0xFF25A1AE).withOpacity(0.9),
-                            ),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: const Text(
-                          "AM",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: "poppins",
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        onTimeFormatChanged("PM");
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 10),
-                        decoration: BoxDecoration(
-                            color: timeFormat == "PM"
-                                ? Color(0xFF25A1AE).withOpacity(0.6)
-                                : Color(0xFF25A1AE).withOpacity(0.3),
-                            border: Border.all(
-                              color: timeFormat == "PM"
-                                  ? Color(0xFF25A1AE)
-                                  : Color(0xFF25A1AE).withOpacity(0.9),
-                            ),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: const Text(
-                          "PM",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: "poppins",
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
               ],
             ),
           ),
+          SizedBox(
+            height: 80,
+          )
         ],
       ),
     );

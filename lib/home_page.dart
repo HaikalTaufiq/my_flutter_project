@@ -47,8 +47,8 @@ class _HomePageState extends State<HomePage> {
                     child: Stack(
                       children: [
                         Container(
-                          height: 185,
-                          width: 325,
+                          height: 215,
+                          width: 355,
                           decoration: BoxDecoration(
                             color: Color(0xFF25A1AE),
                             borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -63,29 +63,32 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         Transform.translate(
-                          offset: Offset(120, -5),
+                          offset: Offset(147, 3),
                           child: Image.asset('assets/images/Man.png'),
                         ),
                         Stack(
                           children: [
-                            Transform.translate(
-                              offset: Offset(0, 113),
-                              child: Image.asset('assets/images/Rec.png'),
+                            Transform.scale(
+                              scale: 1.1,
+                              child: Transform.translate(
+                                offset: Offset(15, 129),
+                                child: Image.asset('assets/images/Rec.png'),
+                              ),
                             ),
                             Transform.translate(
-                              offset: Offset(15, 128),
+                              offset: Offset(15, 158),
                               child: Text(
                                 "Week's feed amount (Gram)",
                                 style: TextStyle(
                                   fontFamily: 'Poppins',
                                   color: Colors.white,
-                                  fontSize: 14,
+                                  fontSize: 15,
                                   fontWeight: FontWeight.normal,
                                 ),
                               ),
                             ),
                             Transform.translate(
-                              offset: Offset(15, 148),
+                              offset: Offset(15, 178),
                               child: Text(
                                 "320 gram",
                                 style: TextStyle(
@@ -97,10 +100,10 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             Transform.translate(
-                              offset: Offset(264, 131),
+                              offset: Offset(292, 158),
                               child: Container(
-                                height: 38,
-                                width: 38,
+                                height: 39,
+                                width: 39,
                                 decoration: BoxDecoration(
                                     color: Color(0xFF25A1AE),
                                     borderRadius:
@@ -108,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             Transform.translate(
-                              offset: Offset(260, 127),
+                              offset: Offset(290, 154),
                               child: CircularPercentIndicator(
                                 radius: 23,
                                 lineWidth: 4,
@@ -135,12 +138,12 @@ class _HomePageState extends State<HomePage> {
               height: 5,
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 70),
+              padding: const EdgeInsets.only(top: 75),
               child: Transform.translate(
                 offset: Offset(4, 10),
                 child: Container(
-                  height: 85,
-                  width: 324,
+                  height: 80,
+                  width: 354,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Color(0xFF25A1AE),
@@ -559,7 +562,7 @@ class _HomePageState extends State<HomePage> {
                         child: Column(
                           children: [
                             Container(
-                                padding: EdgeInsets.only(left: 95, top: 10),
+                                padding: EdgeInsets.only(left: 125, top: 10),
                                 child: Image.asset('assets/images/Panah.png')),
                           ],
                         ),
@@ -570,34 +573,66 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 30, left: 10),
-              child: Center(
-                child: Container(
-                  height: 200,
-                  width: 328,
-                  decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.all(Radius.circular(15))),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(9.0),
-                        child: Text(
-                          "Makanan Info",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "poppins",
-                              fontSize: 24,
-                              fontWeight: FontWeight.w700),
-                        ),
-                      ),
-                    ],
+              padding: const EdgeInsets.only(top: 35, left: 30, right: 25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Image.asset(
+                    'assets/images/Group.png',
+                  ),
+                  Image.asset(
+                    'assets/images/Group.png',
+                  ),
+                  Image.asset(
+                    'assets/images/Group.png',
+                  ),
+                  Image.asset(
+                    'assets/images/Group.png',
+                  ),
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 25, top: 10),
+                  child: Text(
+                    "Fish food info ",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: "poppins",
+                        fontSize: 24,
+                        fontWeight: FontWeight.w600),
                   ),
                 ),
+              ],
+            ),
+            Container(
+              height: 200,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  Container(
+                    width: 200,
+                    height: 100,
+                    color: Colors.red,
+                  ),
+                  Container(
+                    width: 200,
+                    height: 100,
+                    color: Colors.blue,
+                  ),
+                  Container(
+                    width: 200,
+                    height: 100,
+                    color: Colors.black,
+                  ),
+                ],
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 30, left: 10),
+              padding: const EdgeInsets.only(top: 20, left: 10),
               child: Center(
                 child: Container(
                   height: 200,

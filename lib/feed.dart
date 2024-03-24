@@ -178,7 +178,7 @@ class _FeedState extends State<Feed> {
             ),
           ),
           CurvedNavigationBarItem(
-            child: Image.asset('assets/images/calendar.png'),
+            child: Image.asset('assets/images/clock.png'),
             label: 'Schedule',
             labelStyle: TextStyle(
               fontFamily: 'Poppins',
