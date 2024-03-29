@@ -52,14 +52,12 @@ dev_dependencies:
 
 flutter_native_splash:
   color: "#252525"
-  image: assets/images/squarepants.png
   color_dark: "#252525"
   image_dark: assets/images/squarepants.png
 
   android_12:
-    image: assets/images/squarepants.png
-    icon_background_color: "#252525"
     image_dark: assets/images/squarepants.png
+    icon_background_color: "#252525"
     icon_background_color_dark: "#252525"
 
 flutter_launcher_icons:

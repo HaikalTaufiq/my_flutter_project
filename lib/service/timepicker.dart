@@ -60,7 +60,7 @@ class NumberPickerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 130),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -68,9 +68,8 @@ class NumberPickerWidget extends StatelessWidget {
             height: 5,
           ),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 85, vertical: 0),
+            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
             decoration: BoxDecoration(
-              color: Color(0xFF252525),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Row(
@@ -82,19 +81,19 @@ class NumberPickerWidget extends StatelessWidget {
                   value: hour,
                   zeroPad: true,
                   infiniteLoop: true,
-                  itemWidth: 80,
-                  itemHeight: 60,
+                  itemWidth: 55,
+                  itemHeight: 50,
                   onChanged: onHourChanged,
                   textStyle: const TextStyle(color: Colors.grey, fontSize: 20),
                   selectedTextStyle: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 30,
+                    color: Colors.black,
+                    fontSize: 24,
                     fontFamily: "poppins",
                   ),
                   decoration: const BoxDecoration(
                     border: Border(
-                      top: BorderSide(color: Colors.white),
-                      bottom: BorderSide(color: Colors.white),
+                      top: BorderSide(color: Colors.black),
+                      bottom: BorderSide(color: Colors.black),
                     ),
                   ),
                 ),
@@ -104,8 +103,8 @@ class NumberPickerWidget extends StatelessWidget {
                   value: minute,
                   zeroPad: true,
                   infiniteLoop: true,
-                  itemWidth: 80,
-                  itemHeight: 60,
+                  itemWidth: 55,
+                  itemHeight: 50,
                   onChanged: onMinuteChanged,
                   textStyle: const TextStyle(
                     color: Colors.grey,
@@ -113,14 +112,14 @@ class NumberPickerWidget extends StatelessWidget {
                     fontFamily: "poppins",
                   ),
                   selectedTextStyle: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 30,
+                    color: Colors.black,
+                    fontSize: 24,
                     fontFamily: "poppins",
                   ),
                   decoration: const BoxDecoration(
                     border: Border(
-                      top: BorderSide(color: Colors.white),
-                      bottom: BorderSide(color: Colors.white),
+                      top: BorderSide(color: Colors.black),
+                      bottom: BorderSide(color: Colors.black),
                     ),
                   ),
                 ),

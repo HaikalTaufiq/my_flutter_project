@@ -21,6 +21,7 @@ class _HistoryState extends State<History> {
   // ignore: unused_field
   DateTime? _alarmTime;
   AlarmHelper _alarmHelper = AlarmHelper();
+
   Future<List<AlarmInfo>>? _alarms;
   Timer? _timer;
   String _selectedTimeFormat = "AM";
@@ -47,20 +48,7 @@ class _HistoryState extends State<History> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF252525),
-      appBar: AppBar(
-        title: Center(
-          child: Text(
-            'Schedule',
-            style: TextStyle(
-                color: Colors.white,
-                fontFamily: "poppins",
-                fontSize: 35,
-                fontWeight: FontWeight.w700),
-          ),
-        ),
-        backgroundColor: Color(0xFF252525),
-      ),
+      backgroundColor: Color(0xff1A747D),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -71,6 +59,85 @@ class _HistoryState extends State<History> {
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 14),
         child: Column(
           children: <Widget>[
+            Transform.translate(
+              offset: Offset(-60, 25),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Let's check",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: "poppins",
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    'your fish feeding.',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: "poppins",
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700),
+                  ),
+                ],
+              ),
+            ),
+            Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 40, bottom: 5),
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: 105,
+                        width: 350,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white, width: 3),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(24))),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 18, left: 28),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Welcome!',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "poppins",
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            Text(
+                              "Let's schedule your ",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "poppins",
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                            Text(
+                              'Fish Feeder',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "poppins",
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Positioned(
+                    top: -8,
+                    right: 10,
+                    child: Image.asset('assets/images/cat.png')),
+              ],
+            ),
             Expanded(
               child: FutureBuilder<List<AlarmInfo>>(
                   future: _alarms,
@@ -85,7 +152,8 @@ class _HistoryState extends State<History> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 12, vertical: 1),
                             decoration: BoxDecoration(
-                              color: Color(0xFF25A1AE).withOpacity(0.5),
+                              color: Color(0xfff9f9f9).withOpacity(0.3),
+                              border: Border.all(color: Colors.white, width: 3),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(24)),
                             ),
@@ -138,7 +206,7 @@ class _HistoryState extends State<History> {
                                 GestureDetector(
                                   onTap: () {
                                     showModalBottomSheet(
-                                      backgroundColor: Color(0xFF252525),
+                                      backgroundColor: Color(0xffF9F9F9),
                                       useRootNavigator: true,
                                       context: context,
                                       clipBehavior: Clip.antiAlias,
@@ -159,12 +227,60 @@ class _HistoryState extends State<History> {
                                                   ),
                                                   ListTile(
                                                     title: Center(
-                                                      child: Text(
-                                                        'Edit Feed Schedule',
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontFamily:
-                                                                "poppins"),
+                                                      child: Column(
+                                                        children: [
+                                                          Positioned(
+                                                            top: -7,
+                                                            left: 120,
+                                                            child: Container(
+                                                              height: 3,
+                                                              width: 40,
+                                                              decoration: BoxDecoration(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  borderRadius:
+                                                                      BorderRadius.all(
+                                                                          Radius.circular(
+                                                                              30))),
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            height: 10,
+                                                          ),
+                                                          Text(
+                                                            'Edit Time',
+                                                            style: TextStyle(
+                                                              color: Color
+                                                                  .fromARGB(
+                                                                      255,
+                                                                      33,
+                                                                      33,
+                                                                      33),
+                                                              fontFamily:
+                                                                  "poppins",
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            'Feeding Schedule',
+                                                            style: TextStyle(
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        95,
+                                                                        95,
+                                                                        95),
+                                                                fontFamily:
+                                                                    "poppins",
+                                                                fontSize: 14,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500),
+                                                          ),
+                                                        ],
                                                       ),
                                                     ),
                                                   ),
@@ -260,7 +376,7 @@ class _HistoryState extends State<History> {
                             child: MaterialButton(
                               onPressed: () {
                                 showModalBottomSheet(
-                                  backgroundColor: Color(0xFF252525),
+                                  backgroundColor: Color(0xffF9F9F9),
                                   useRootNavigator: true,
                                   context: context,
                                   clipBehavior: Clip.antiAlias,
@@ -281,11 +397,48 @@ class _HistoryState extends State<History> {
                                             ),
                                             ListTile(
                                               title: Center(
-                                                child: Text(
-                                                  'Set Feed Schedule',
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontFamily: "poppins"),
+                                                child: Column(
+                                                  children: [
+                                                    Positioned(
+                                                      top: -7,
+                                                      left: 120,
+                                                      child: Container(
+                                                        height: 4,
+                                                        width: 40,
+                                                        decoration: BoxDecoration(
+                                                            color: Colors.black,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            30))),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 10,
+                                                    ),
+                                                    Text(
+                                                      'Set Time',
+                                                      style: TextStyle(
+                                                        color: Color.fromARGB(
+                                                            255, 33, 33, 33),
+                                                        fontFamily: "poppins",
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      'Feeding Schedule',
+                                                      style: TextStyle(
+                                                          color: Color.fromARGB(
+                                                              255, 95, 95, 95),
+                                                          fontFamily: "poppins",
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w500),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             ),
@@ -313,8 +466,8 @@ class _HistoryState extends State<History> {
                                               },
                                             ),
                                             FloatingActionButton.extended(
-                                              backgroundColor:
-                                                  Color(0xFF25A1AE),
+                                              backgroundColor: Color(0xFF25A1AE)
+                                                  .withOpacity(0.7),
                                               onPressed: onSaveAlarm,
                                               label: Text(
                                                 'Save',
