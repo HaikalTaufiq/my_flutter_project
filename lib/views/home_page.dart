@@ -9,8 +9,8 @@ import 'dart:async';
 import 'package:flutter_application_1/service/notif_service.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
-import 'package:flutter_application_1/history.dart';
-import 'package:flutter_application_1/feed.dart';
+import 'package:flutter_application_1/views/history.dart';
+import 'package:flutter_application_1/views/feed.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -113,9 +113,16 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             Positioned(
-                                top: 35,
-                                left: 50,
-                                child: Image.asset('assets/images/Man.png')),
+                              top: 27,
+                              left: 30,
+                              child: Container(
+                                width: 250,
+                                height: 250,
+                                child: Image.asset(
+                                  'assets/images/Man.png',
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                         Positioned(
@@ -183,8 +190,7 @@ class _HomePageState extends State<HomePage> {
                                   0xFF25A1AE), // Warna track ketika switch aktif
                               inactiveThumbColor: Colors
                                   .white, // Warna thumb ketika switch tidak aktif
-                              inactiveTrackColor:
-                                  Color(0xff12171D).withOpacity(0.8),
+                              inactiveTrackColor: Color(0xff7A7B7C),
                             ),
                           ),
                         ),
@@ -205,6 +211,9 @@ class _HomePageState extends State<HomePage> {
         height: 70,
         index: _currentIndex,
         onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
           _pageController.animateToPage(
             index,
             duration: Duration(milliseconds: 500),
@@ -213,34 +222,33 @@ class _HomePageState extends State<HomePage> {
         },
         items: [
           CurvedNavigationBarItem(
-            child: Image.asset(
-              'assets/images/stat.png',
-            ),
-            label: 'Statistic',
+            child: _currentIndex == 0
+                ? Image.asset('assets/icons/cal2.png')
+                : Image.asset('assets/icons/cal1.png'),
+            label: 'Statistics',
             labelStyle: TextStyle(
               fontFamily: 'Poppins',
-              color:
-                  Color(0xff25A1AE), // Ganti dengan warna biru yang diinginkan
+              color: _currentIndex == 0 ? Color(0xff25A1AE) : Color(0xff7A7B7C),
             ),
           ),
           CurvedNavigationBarItem(
-            child: Image.asset(
-              'assets/images/home.png',
-            ),
+            child: _currentIndex == 1
+                ? Image.asset('assets/icons/home2.png')
+                : Image.asset('assets/icons/home1.png'),
             label: 'Home',
             labelStyle: TextStyle(
               fontFamily: 'Poppins',
-              color:
-                  Color(0xff25A1AE), // Ganti dengan warna biru yang diinginkan
+              color: _currentIndex == 1 ? Color(0xff25A1AE) : Color(0xff7A7B7C),
             ),
           ),
           CurvedNavigationBarItem(
-            child: Image.asset('assets/images/calendar.png'),
+            child: _currentIndex == 2
+                ? Image.asset('assets/icons/clock2.png')
+                : Image.asset('assets/icons/clock1.png'),
             label: 'Schedule',
             labelStyle: TextStyle(
               fontFamily: 'Poppins',
-              color:
-                  Color(0xff25A1AE), // Ganti dengan warna biru yang diinginkan
+              color: _currentIndex == 2 ? Color(0xff25A1AE) : Color(0xff7A7B7C),
             ),
           ),
         ],

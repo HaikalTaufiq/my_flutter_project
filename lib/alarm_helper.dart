@@ -8,6 +8,7 @@ final String columnId = 'id';
 final String columnTitle = 'title';
 final String columnDateTime = 'alarmDateTime';
 final String columnPending = 'isPending';
+final String columnAmount = 'amount';
 
 class AlarmHelper {
   static Database? _database;
@@ -34,7 +35,7 @@ class AlarmHelper {
 
     var database = await openDatabase(
       path,
-      version: 1,
+      version: 3,
       onCreate: (db, version) {
         db.execute('''
           create table $tableAlarm ( 
@@ -42,8 +43,18 @@ class AlarmHelper {
             $columnTitle text not null,
             $columnDateTime text not null,
             $columnPending integer
+            $columnAmount integer  -- Added amount column
           )
        ''');
+      },
+      onUpgrade: (db, oldVersion, newVersion) {
+        if (oldVersion < newVersion) {
+          try {
+            db.execute('ALTER TABLE alarm ADD COLUMN amount INTEGER');
+          } catch (error) {
+            // Tangani kesalahan jika terjadi selama ALTER TABLE (opsional)
+          }
+        }
       },
     );
     return database;

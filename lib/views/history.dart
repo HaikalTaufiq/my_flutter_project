@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -27,6 +29,7 @@ class _HistoryState extends State<History> {
   String _selectedTimeFormat = "AM";
   int _selectedMinute = 0;
   int _selectedHour = 0;
+  int? amount;
 
   @override
   void initState() {
@@ -86,19 +89,21 @@ class _HistoryState extends State<History> {
             Stack(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 40, bottom: 5),
+                  padding: const EdgeInsets.only(top: 40, bottom: 0),
                   child: Stack(
                     children: [
                       Container(
-                        height: 105,
+                        height: 115,
                         width: 350,
                         decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white, width: 3),
+                            border: Border.all(
+                                color: Color(0xffEFEFEF).withOpacity(0.3),
+                                width: 5),
                             borderRadius:
                                 BorderRadius.all(Radius.circular(24))),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 18, left: 28),
+                        padding: const EdgeInsets.only(top: 25, left: 28),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -133,9 +138,14 @@ class _HistoryState extends State<History> {
                   ),
                 ),
                 Positioned(
-                    top: -8,
-                    right: 10,
-                    child: Image.asset('assets/images/cat.png')),
+                  top: -5,
+                  right: 5,
+                  child: Container(
+                    width: 150,
+                    height: 150,
+                    child: Image.asset('assets/images/cat.png'),
+                  ),
+                ),
               ],
             ),
             Expanded(
@@ -150,10 +160,12 @@ class _HistoryState extends State<History> {
                           return Container(
                             margin: EdgeInsets.only(bottom: 25),
                             padding: EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 1),
+                                horizontal: 12, vertical: 0),
                             decoration: BoxDecoration(
-                              color: Color(0xfff9f9f9).withOpacity(0.3),
-                              border: Border.all(color: Colors.white, width: 3),
+                              color: Color(0xffEFEFEF).withOpacity(0.4),
+                              border: Border.all(
+                                  color: Color(0xffEFEFEF).withOpacity(0.3),
+                                  width: 5),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(24)),
                             ),
@@ -229,20 +241,16 @@ class _HistoryState extends State<History> {
                                                     title: Center(
                                                       child: Column(
                                                         children: [
-                                                          Positioned(
-                                                            top: -7,
-                                                            left: 120,
-                                                            child: Container(
-                                                              height: 3,
-                                                              width: 40,
-                                                              decoration: BoxDecoration(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  borderRadius:
-                                                                      BorderRadius.all(
-                                                                          Radius.circular(
-                                                                              30))),
-                                                            ),
+                                                          Container(
+                                                            height: 3,
+                                                            width: 40,
+                                                            decoration: BoxDecoration(
+                                                                color: Colors
+                                                                    .black,
+                                                                borderRadius: BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            30))),
                                                           ),
                                                           SizedBox(
                                                             height: 10,
@@ -399,20 +407,16 @@ class _HistoryState extends State<History> {
                                               title: Center(
                                                 child: Column(
                                                   children: [
-                                                    Positioned(
-                                                      top: -7,
-                                                      left: 120,
-                                                      child: Container(
-                                                        height: 4,
-                                                        width: 40,
-                                                        decoration: BoxDecoration(
-                                                            color: Colors.black,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            30))),
-                                                      ),
+                                                    Container(
+                                                      height: 4,
+                                                      width: 40,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors.black,
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          30))),
                                                     ),
                                                     SizedBox(
                                                       height: 10,
@@ -545,6 +549,7 @@ class _HistoryState extends State<History> {
     var alarmInfo = AlarmInfo(
       alarmDateTime: scheduleAlarmDateTime,
       title: 'alarm',
+      amount: 10,
     );
 
     // Menyimpan alarm ke dalam database
@@ -597,6 +602,7 @@ class _HistoryState extends State<History> {
         id: id,
         alarmDateTime: scheduleAlarmDateTime,
         title: 'alarm', // Anda dapat menyesuaikan judul sesuai kebutuhan
+        amount: 10,
       );
 
       // Memanggil metode updateAlarm dari AlarmHelper untuk mengupdate data di database
