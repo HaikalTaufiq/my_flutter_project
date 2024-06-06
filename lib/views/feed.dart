@@ -10,6 +10,7 @@ import 'package:flutter_application_1/models/alarm_info.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:flutter_application_1/alarm_helper.dart';
+import 'package:lottie/lottie.dart';
 
 class Feed extends StatefulWidget {
   const Feed({super.key});
@@ -20,13 +21,13 @@ class Feed extends StatefulWidget {
 
 class _FeedState extends State<Feed> {
   List<double> weeklySummary = [
-    80.10,
+    50.19,
     60.50,
-    50.10,
-    40.40,
-    64.30,
     80.10,
     90.10,
+    80.10,
+    64.30,
+    40.40,
   ];
 
   AlarmHelper _alarmHelper = AlarmHelper();
@@ -81,7 +82,7 @@ class _FeedState extends State<Feed> {
                       child: Stack(
                         children: [
                           Container(
-                            height: 115,
+                            height: 105,
                             width: 350,
                             decoration: BoxDecoration(
                                 border: Border.all(
@@ -91,12 +92,12 @@ class _FeedState extends State<Feed> {
                                     BorderRadius.all(Radius.circular(24))),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 24, left: 28),
+                            padding: const EdgeInsets.only(top: 19, left: 28),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Welcome!',
+                                  'Its Rainy Outside !',
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontFamily: "poppins",
@@ -104,7 +105,7 @@ class _FeedState extends State<Feed> {
                                       fontWeight: FontWeight.w600),
                                 ),
                                 Text(
-                                  "Let's check your ",
+                                  "Temperatue : 23° C",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontFamily: "poppins",
@@ -112,7 +113,7 @@ class _FeedState extends State<Feed> {
                                       fontWeight: FontWeight.w400),
                                 ),
                                 Text(
-                                  'Feeding Summary',
+                                  'PH level : 7,5',
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontFamily: "poppins",
@@ -126,12 +127,12 @@ class _FeedState extends State<Feed> {
                       ),
                     ),
                     Positioned(
-                      top: -15,
+                      top: 5,
                       right: 5,
                       child: Container(
                         width: 150,
                         height: 150,
-                        child: Image.asset('assets/images/cat.png'),
+                        child: Lottie.asset('assets/json/rain.json'),
                       ),
                     ),
                   ],
@@ -141,7 +142,7 @@ class _FeedState extends State<Feed> {
                   child: Row(
                     children: [
                       Text(
-                        "April 2024",
+                        getFormattedDate(),
                         style: TextStyle(
                           fontFamily: 'Poppins',
                           color: Colors.white,
@@ -197,13 +198,14 @@ class _FeedState extends State<Feed> {
                                           shrinkWrap:
                                               true, // Prevent excessive scrolling
                                           itemCount: alarms.length,
+                                          scrollDirection: Axis.vertical,
                                           itemBuilder: (context, index) {
                                             final alarm = alarms[index];
                                             final formattedDate = DateFormat(
-                                                    'EEEE, d MMM, yyyy')
+                                                    'EEE, d MMM, yyyy')
                                                 .format(alarm.alarmDateTime!);
                                             final formattedTime =
-                                                DateFormat('h:mm a').format(
+                                                DateFormat('hh:mm a').format(
                                                     alarm.alarmDateTime!);
                                             return Padding(
                                               padding:
@@ -216,16 +218,19 @@ class _FeedState extends State<Feed> {
                                                         .spaceBetween,
                                                 children: [
                                                   Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
                                                     children: [
                                                       Text(
-                                                        '($formattedDate)',
+                                                        '$formattedDate,  ',
                                                         style: TextStyle(
                                                           fontSize: 16,
                                                           fontFamily: 'poppins',
                                                         ),
                                                       ),
                                                       Text(
-                                                        ' at $formattedTime',
+                                                        'at  $formattedTime, ',
                                                         style: TextStyle(
                                                           fontSize: 16,
                                                           fontFamily: 'poppins',
@@ -288,7 +293,7 @@ class _FeedState extends State<Feed> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(24))),
                         child: Transform.translate(
-                          offset: Offset(25, 18),
+                          offset: Offset(25, 14),
                           child: Stack(
                             children: [
                               Positioned(
@@ -349,7 +354,7 @@ class _FeedState extends State<Feed> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(24))),
                           child: Transform.translate(
-                            offset: Offset(25, 18),
+                            offset: Offset(25, 14),
                             child: Stack(
                               children: [
                                 Positioned(
@@ -411,7 +416,7 @@ class _FeedState extends State<Feed> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(24))),
                           child: Transform.translate(
-                            offset: Offset(25, 18),
+                            offset: Offset(25, 14),
                             child: Stack(
                               children: [
                                 Positioned(
@@ -636,4 +641,16 @@ class _FeedState extends State<Feed> {
       ),
     );
   }
+}
+
+String getFormattedDate() {
+  // Mendapatkan tanggal sekarang
+  DateTime now = DateTime.now();
+
+  // Mengubah tanggal menjadi format bulan dan tahun
+  String bulan = DateFormat('MMMM').format(now);
+  String tahun = DateFormat('yyyy').format(now);
+
+  // Mengembalikan teks dengan format bulan dan tahun
+  return '$bulan $tahun';
 }
